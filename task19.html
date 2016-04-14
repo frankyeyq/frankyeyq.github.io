@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style type="text/css">
+        body{
+            width: 100%;
+        }
+        button{
+            width:66px;
+            height:30px;
+            display: block;
+            float: left;
+            margin-right: 10px;
+            margin-top:30px;
+            cursor: pointer;
+        }
+        button:first-child{
+            clear:left;
+        }
+        button:last-child{
+            margin-right:0;
+        }
+        input{
+            width:420px;
+            height: 45px;
+            margin:0 auto;
+            display: block;
+        }
+        .container{
+            width: 500px;
+            margin: 0 auto;
+        }
+        .btn-container{
+            width: 420px;
+            height: 75px;
+            margin: 0 auto;
+        }
+        .queue{
+            width: 80%;
+            height: 300px;
+            padding: 0 10px;
+            margin: 0 auto;
+            border: 2px solid #999;
+            border-radius: 9px;
+            position: relative;
+            align-items: flex-end;
+            justify-content: center;
+            display: flex;
+        }
+        .queue div{
+            width: 12px;
+            height: 30px;
+            border: 1px solid #567890;
+            background-color: #ff9500;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            margin: 10px 2px;
+            cursor: pointer;
+            bottom: 0;
+            display: inline-block;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <input type="text" placeholder="输入一个10-100数值" id="input-text">
+            <div class="btn-container">
+                <button id="left-in">左侧进</button>
+                <button id="left-out">左侧出</button>
+                <button id="right-in">右侧进</button>
+                <button id="right-out">右侧出</button>
+                <button id="sort">排序</button>
+            </div>
+        </div>
+        <div class="queue" id="queue">
+        </div>
+        <script type="text/javascript" src="task19.js"></script>
+    </body>
+</html>

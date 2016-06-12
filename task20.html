@@ -23,7 +23,7 @@
             margin-right:0;
         }
         input{
-            width:420px;
+            width:300px;
             height: 45px;
             margin:0 auto;
             display: block;
@@ -33,53 +33,68 @@
             margin: 0 auto;
         }
         .btn-container{
-            width: 420px;
+            width: 300px;
             height: 75px;
             margin: 0 auto;
         }
         .queue{
-            width: 80%;
-            height: 300px;
-            padding: 0 10px;
             margin: 0 auto;
-            border: 2px solid #999;
-            border-radius: 9px;
-            position: relative;
-            align-items: flex-end;
-            justify-content: center;
-            display: flex;
+            height: 50px;
         }
         .queue div{
-            width: 12px;
+            min-width: 30px;
             height: 30px;
+            float: left;
             border: 1px solid #567890;
             background-color: #ff9500;
             color: white;
             text-align: center;
             line-height: 30px;
-            margin: 10px 2px;
+            margin: 10px 5px;
+            padding: 0 5px;
             cursor: pointer;
-            bottom: 0;
-            display: inline-block;
         }
-        #right-in{
-            clear: left;
+        #searchInput{
+            width: 200px;
+            height: 20px;
+        }
+        .searchContainer{
+            width: 300px;
+            height: 30px;
+            margin: 0 auto;
+        }
+        .searchContainer input{
+            width: 212px !important;
+            float: left;
+        }
+        .searchContainer button{
+            float: left;
+            margin-top: 0;
+            margin-left: 10px;
+            height: 26px;
+        }
+        span.selected{
+            background-color: red;
         }
         </style>
     </head>
     <body>
         <div class="container">
-            <input type="text" placeholder="输入一个10-100数值" id="input-text">
+            <input type="text" placeholder="输入一个数值" id="input-text">
             <div class="btn-container">
                 <button id="left-in">左侧进</button>
                 <button id="left-out">左侧出</button>
                 <button id="right-in">右侧进</button>
                 <button id="right-out">右侧出</button>
-                <button id="sort">排序</button>
             </div>
+            <div class="searchContainer">
+                <input id="searchInput" placeholder="请输入要搜索的内容">
+                <button id="searchBtn">搜索</button>
+            </div>
+
         </div>
         <div class="queue" id="queue">
         </div>
-        <script type="text/javascript" src="task19.js"></script>
     </body>
+    <script type="text/javascript" src="task20.js"></script>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>任务二十九：表单（一）单个表单项的检验</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<style>
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			#tip{
+				width: 420px;
+				margin:10px auto;
+				color:#bababa;
+			}
+			input,button{
+				outline:none;
+			}
+			.right-msg{
+				color: green !important;
+			}
+			.error-msg{
+				color: red !important;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入4-16个字符" style="width:400px;height:30px;padding:10px;border-radius:6px;margin:0 auto;display:block;margin-top: 100px;border:2px solid #bababa;" id="valText">
+		<p id="tip">必填，长度为4~16个字符</p>
+		<button style="width:420px;height:40px;display: block;margin:10px auto;background:#2F79BA;color:white;border:0 none;border-radius:6px;" id="validate">验证</button>
+		<script>
+			var valText = document.getElementById('valText');
+			var validate = document.getElementById('validate');
+			var tip = document.getElementById('tip');
+			validate.onclick = function(){
+				var val = valText.value;
+				var len = val.length;
+				var textLen = 0;
+				for(var i = 0; i < len; i++){
+					console.log(val.charCodeAt(i));
+					if(val.charCodeAt(i)>127){
+						textLen+= 2;
+					}else{
+						textLen+= 1;
+					}
+				}
+				if(textLen>=4 && textLen<=16){
+					tip.className = "right-msg";
+					tip.innerHTML = "验证正确";
+				}else{
+					tip.className = "error-msg";
+					tip.innerHTML = "验证错误";
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>任务三十：表单（二）多个表单项的动态校验</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<style>
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			label{
+				width:533px;
+				min-height: 60px;
+				margin:10px auto;
+				display: block;
+			}
+			label>span{
+				width:90px;
+				display: inline-block;
+				text-align: right;
+				margin-right: 20px;
+			}
+			label>input{
+				width: 400px;
+				height:20px;
+				padding:10px;
+				color:#333;
+				border-radius: 6px;
+				border:1px solid #bababa;
+				outline: none;
+			}
+			label>input:focus{
+				border: 1px #83bffc solid;
+				box-shadow: 0px 1px 2px;
+				-webkit-box-shadow: 0px 1px 2px;
+				-moz-box-shadow: 0px 1px 2px;
+			}
+			.tip{
+				color:#bababa;
+				display: none;
+				margin-left: 110px;
+			}
+			label>input:focus~p.tip{
+				display: block;
+			}
+			input[type='button']{
+				width: 100px;
+				float: right;
+				height: 40px;
+				background: #2F79BA;
+				color:white;
+			}
+			.error{
+				color: red;
+			}
+			.errorBord{
+				border:1px solid red;
+			}
+			.right{
+				color:#2bab56;
+			}
+			.rightBorder{
+				border:1px solid #2bab56;
+				color:#2bab56;
+			}
+		</style>
+	</head>
+	<body>
+		<label for="">
+			<span>名称</span><input type="text" id="txtName">
+			<p class="tip" id="nameTip">必填，长度为4~16个字符</p>
+		</label>
+		<label for="">
+			<span>密码</span><input type="password" id="txtPwd">
+			<p class="tip" id="pwdTip">必填，长度为4~16个字符</p>
+		</label>
+		<label for="">
+			<span>确认密码</span><input type="password" id="txtPwd2">
+			<p class="tip" id="pwd2Tip">再次输入密码</p>
+		</label>
+		<label for="">
+			<span>邮箱</span><input type="text" id="txtEmail">
+			<p class="tip" id="emailTip">example@163.com</p>
+		</label>
+		<label for="">
+			<span>手机</span><input type="text" id="txtPhone">
+			<p class="tip" id="phoneTip">请输入中国地区手机号</p>
+		</label>
+		<label for="">
+			<span></span><input type="button" value="验证" id="valBtn">
+		</label>
+		<script>
+			var txtName = document.getElementById('txtName');
+			var txtPwd = document.getElementById('txtPwd');
+			var txtPwd2 = document.getElementById('txtPwd2');
+			var txtEmail = document.getElementById('txtEmail');
+			var txtPhone = document.getElementById('txtPhone');
+			var valBtn = document.getElementById('valBtn');
+			var nameTip = document.getElementById('nameTip');
+			var pwdTip = document.getElementById('pwdTip');
+
+			txtName.addEventListener('blur',function(){
+				whichInput('name');
+			});
+			txtPwd.addEventListener('blur',function(){
+				whichInput('pwd');
+			});
+			txtPwd2.addEventListener('blur',function(){
+				whichInput('pwd2');
+			});
+			txtEmail.addEventListener('blur',function(){
+				whichInput('email');
+			});
+			txtPhone.addEventListener('blur',function(){
+				whichInput('phone');
+			});
+
+			function whichInput(val){
+				switch(val){
+					case 'name':
+						validate.name();
+					break;
+					case 'pwd':
+						validate.pwd();
+
+					break;
+					case 'pwd2':
+						validate.pwd2();
+
+					break;
+					case 'email':
+						validate.email();
+
+					break;
+					case 'phone':
+						validate.phone();
+					break;
+					default:
+					break;
+				}
+			}
+			var validate = {};
+			validate = function(mod){
+				mod.name = function(){
+					var val = txtName.value;
+					if(val == ''){
+						nameTip.innerHTML = '名称不能为空';
+						nameTip.style.display = "block";
+						nameTip.className = 'tip error';
+						txtName.className = 'errorBorder';
+					}
+					if(val.length>=4 && val.length<=16){
+						nameTip.innerHTML = '验证通过';
+						nameTip.style.display = "block";
+						nameTip.className = 'tip right';
+						txtName.className = 'rightBorder';
+					}else{
+						nameTip.innerHTML = '验证错误，请输入长度为4~16个字符';
+						nameTip.style.display = "block";
+						nameTip.className = 'tip error';
+						txtName.className = 'errorBorder';
+					}
+				}
+				mod.pwd = function(){
+					var val = txtPwd.value;
+					console.log(val);
+					if(val == ''){
+						pwdTip.innerHTML = '名称不能为空';
+						pwdTip.style.display = "block";
+						pwdTip.className = 'tip error';
+						txtName.className = 'errorBorder';
+					}
+					if(val.length>=4 && val.length<=16){
+						pwdTip.innerHTML = '验证通过';
+						pwdTip.style.display = "block";
+						pwdTip.className = 'tip right';
+						txtPwd.className = 'rightBorder';
+					}else{
+						pwdTip.innerHTML = '验证错误，请输入长度为4~16个字符';
+						pwdTip.style.display = "block";
+						pwdTip.className = 'tip error';
+						txtPwd.className = 'errorBorder';
+					}
+				}
+				mod.pwd2 = function(){
+					var val1 = txtPwd.value;
+					var val2 = txtPwd2.value;
+					if(val1 == val2 && val2 != ''){
+						pwd2Tip.innerHTML = '验证通过';
+						pwd2Tip.style.display = "block";
+						pwd2Tip.className = 'tip right';
+						txtPwd2.className = 'rightBorder';
+					}else{
+						pwd2Tip.innerHTML = '验证错误，两次输入密码不同';
+						pwd2Tip.style.display = "block";
+						pwd2Tip.className = 'tip error';
+						txtPwd2.className = 'errorBorder';
+					}
+
+				}
+				mod.email = function(){
+					var val = txtEmail.value;
+					var pattern = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/; 
+					if(!pattern.test(val)){
+						emailTip.innerHTML = '邮箱格式错误';
+						emailTip.style.display = "block";
+						emailTip.className = 'tip error';
+						txtEmail.className = 'errorBorder';
+					}else{
+						emailTip.innerHTML = '验证通过';
+						emailTip.style.display = "block";
+						emailTip.className = 'tip right';
+						txtEmail.className = 'rightBorder';
+					}
+				}
+				mod.phone = function(){
+					var val = txtPhone.value;
+					if(!(/^1[3|4|5|7|8]\d{9}$/.test(val))){
+						phoneTip.innerHTML = '手机格式错误';
+						phoneTip.style.display = "block";
+						phoneTip.className = 'tip error';
+						txtPhone.className = 'errorBorder';
+					}else{
+
+					}
+				}
+				return mod;
+			}(validate);
+		</script>
+	</body>
+</html>

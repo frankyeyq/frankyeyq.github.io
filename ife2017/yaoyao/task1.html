@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>ife-task1</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+    </head>
+    <style type="text/css">
+        .div{
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .tip{
+            position: absolute;
+            bottom: -30px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+    <body>
+        <div class="div">
+            名称 <input type="text" id="input"><button id="validate">验证</button>
+            <p class="tip">必填，长度4~16个字符</p>
+        </div>
+        <script>
+            var btn = document.getElementById('validate');
+            btn.addEventListener('click', function() {
+                var val = document.getElementById('input').value;
+                var count = 0;
+                var len = val.length;
+                var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+                for( var i=0; i<len; i++) {
+                    if(reg.test(val.charAt(i))) {
+                        count += 2;
+                    }else{
+                        count += 1;
+                    }
+                }
+                console.log(count);
+            })
+        </script>
+    </body>
+</html>

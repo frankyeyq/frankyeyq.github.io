@@ -39,6 +39,16 @@
                         count += 1;
                     }
                 }
+                if(count === 0) {
+                    document.querySelector('.tip').innerHTML = "名称不能为空";
+                    document.querySelector('.tip').style.color ="red";
+                } else if(count < 4 || count > 16) {
+                    document.querySelector('.tip').style.color ="red";
+                    document.querySelector('.tip').innerHTML = "长度4~16个字符";
+                } else {
+                    document.querySelector('.tip').innerHTML = "名称格式正确";
+                    document.querySelector('.tip').style.color ="green";
+                }
                 console.log(count);
             })
         </script>
